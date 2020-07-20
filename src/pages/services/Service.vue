@@ -9,7 +9,7 @@
         </div>
         <div class="bring-assistant">
           <div class="bring-assistant-l">
-            <div
+            <!-- <div
               class="b-a-l-swiper"
               style="transform: translate3d(-130px, 0px, 0px); transition-duration: 300ms; perspective-origin: 344px 50%;"
             >
@@ -43,28 +43,33 @@
               >
                 <img src="../../assets/images/8645489.png" />
               </div>
-            </div>
+            </div>-->
+            <el-carousel
+              :autoplay="false"
+              type="card"
+              height="608px"
+              arrow="nerver"
+              indicator-position="none"
+            >
+              <el-carousel-item v-for="(item , index) in list" :key="index">
+                <div class="b-a-l-s-side">
+                  <img :src="item.carouselImg" />
+                </div>
+              </el-carousel-item>
+            </el-carousel>
           </div>
           <div class="bring-assistant-r">
-            <div class="b-a-r-kind">
+            <div
+              class="b-a-r-kind"
+              v-for="(item,index) in list"
+              :key="index"
+              @mouseenter="addActive($event);ch_cur(index)"
+              @mouseleave="removeActive($event)"
+            >
               <div class="b-point"></div>
               <div>
-                <p class="b-a-r-k-title">简易便捷 带货好帮手</p>
-                <p class="b-a-r-k-desc">星罗星选小程序，微信扫码，快速授权，一键选货</p>
-              </div>
-            </div>
-            <div class="b-a-r-kind">
-              <div class="b-point b-point-checked"></div>
-              <div>
-                <p class="b-a-r-k-title">全品类好货 超高佣金等你来</p>
-                <p class="b-a-r-k-desc">超高佣金、精选创作者爆款货品、众多爆品类目任你选</p>
-              </div>
-            </div>
-            <div class="b-a-r-kind">
-              <div class="b-point"></div>
-              <div>
-                <p class="b-a-r-k-title">订单数据监测 实时统计报表</p>
-                <p class="b-a-r-k-desc">带货数据统计、创作者管理、多渠道信息反馈、专属客服服务</p>
+                <p class="b-a-r-k-title">{{item.title}}</p>
+                <p class="b-a-r-k-desc">{{item.desc}}</p>
               </div>
             </div>
           </div>
@@ -205,7 +210,42 @@
   </div>
 </template>
 <script>
-export default {};
+export default {
+  data() {
+    return {
+      list: [
+        {
+          title: "简易便捷 带货好帮手",
+          desc: "星罗星选小程序，微信扫码，快速授权，一键选货",
+          carouselImg:"https://xl.linkstars.com/_nuxt/img/8645489.png",
+        },
+        {
+          title: "全品类好货 超高佣金等你来",
+          desc: "超高佣金、精选创作者爆款货品、众多爆品类目任你选",
+          carouselImg:"https://xl.linkstars.com/_nuxt/img/97408c7.png",
+        },
+        {
+          title: "订单数据监测 实时统计报表",
+          desc: "带货数据统计、创作者管理、多渠道信息反馈、专属客服服务",
+          carouselImg:"https://xl.linkstars.com/_nuxt/img/e7ce824.png"
+        }
+      ],
+      cur: 0
+    };
+  },
+  methods: {
+    ch_cur(index) {
+      console.log(index);
+      this.cur = index;
+    },
+    addActive($event) {
+      $event.currentTarget.children[0].className = "b-point b-point-checked";
+    },
+    removeActive($event) {
+      $event.currentTarget.children[0].className = "b-point";
+    }
+  }
+};
 </script>
 <style lang="scss" scoped>
 .top-banner {
