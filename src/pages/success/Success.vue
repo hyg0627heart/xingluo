@@ -202,14 +202,14 @@ export default {
   data() {
     return {
       photos: [
-        { img: "/img/21f95d7.21f95d7e.png" },
-        { img: "/img/0c02006.0c020067.png" }
+        { img: "https://xl.linkstars.com/_nuxt/img/21f95d7.png" },
+        { img: "https://xl.linkstars.com/_nuxt/img/0c02006.png" }
       ],
       video: [
         {
           videoSrc:
             "https://video.linkstars.com/xingxuan/20200317/535961e621ed7f438a26ff417b61789a.mp4",
-          bgimg: "/img/5fdbdad.5fdbdad1.png"
+          bgimg: "https://xl.linkstars.com/_nuxt/img/5fdbdad.png"
         },
         {
           videoSrc:

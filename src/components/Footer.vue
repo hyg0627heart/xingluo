@@ -13,43 +13,43 @@
         <div class="xingluo-components-page-bottom-friendship" data-v-803e685a>
           <span class="xingluo-components-page-bottom-friendship-title" data-v-803e685a>友情链接</span>
           <a
-            href="https://www.linkstars.com/"
+            href="#"
             class="xingluo-components-page-bottom-a"
             data-v-803e685a
           >首页</a>
           <a
-            href="https://xl.linkstars.com/solutions/cases"
+            href="#"
             class="xingluo-components-page-bottom-a"
             data-v-803e685a
           >成功案例</a>
           <a
-            href="https://xl.linkstars.com/solutions/services"
+            href="#"
             class="xingluo-components-page-bottom-a"
             data-v-803e685a
           >创作者服务</a>
           <a
-            href="https://xl.linkstars.com/list/list"
+            href="#"
             class="xingluo-components-page-bottom-a"
             data-v-803e685a
           >商品总库</a>
           <a
-            href="https://openapi.linkstars.com/doc/home/"
+            href="#"
             class="xingluo-components-page-bottom-a"
             data-v-803e685a
           >开放平台</a>
           <a
-            href="https://xl.linkstars.com/admin/#/mation/overview"
+            href="#"
             target="_blank"
             class="xingluo-components-page-bottom-a"
             data-v-803e685a
           >内容合作</a>
           <a
-            href="https://xl.linkstars.com/help/"
+            href="#"
             class="xingluo-components-page-bottom-a"
             data-v-803e685a
           >帮助中心</a>
           <a
-            href="https://xl.linkstars.com/admin/#/my/myinfo"
+            href="#"
             target="_blank"
             class="xingluo-components-page-bottom-a"
             data-v-803e685a

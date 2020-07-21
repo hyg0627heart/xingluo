@@ -9,49 +9,15 @@
         </div>
         <div class="bring-assistant">
           <div class="bring-assistant-l">
-            <!-- <div
-              class="b-a-l-swiper"
-              style="transform: translate3d(-130px, 0px, 0px); transition-duration: 300ms; perspective-origin: 344px 50%;"
-            >
-              <div
-                class="b-a-l-s-side"
-                style="transition-duration: 300ms; transform: translate3d(-65px, 0px, -200px) rotateX(0deg) rotateY(0deg); z-index: -2;"
-              >
-                <img src="../../assets/images/e7ce824.png" />
-              </div>
-              <div
-                class="b-a-l-s-side"
-                style="transition-duration: 300ms; transform: translate3d(-144px, 0px, 0px) rotateX(0deg) rotateY(0deg); z-index: -1;"
-              >
-                <img src="../../assets/images/8645489.png" />
-              </div>
-              <div
-                class="b-a-l-s-side"
-                style="transition-duration: 300ms; transform: translate3d(-206px, 0px, 120px) rotateX(0deg) rotateY(0deg); z-index: 1;"
-              >
-                <img src="../../assets/images/97408c7.png" />
-              </div>
-              <div
-                class="b-a-l-s-side"
-                style="transition-duration: 300ms; transform: translate3d(-272px, 0px, 0px) rotateX(0deg) rotateY(0deg); z-index: -1;"
-              >
-                <img src="../../assets/images/e7ce824.png" />
-              </div>
-              <div
-                class="b-a-l-s-side"
-                style="transition-duration: 300ms; transform: translate3d(-340px, 0px, -200px) rotateX(0deg) rotateY(0deg); z-index: -2;"
-              >
-                <img src="../../assets/images/8645489.png" />
-              </div>
-            </div>-->
             <el-carousel
               :autoplay="false"
               type="card"
               height="608px"
-              arrow="nerver"
+              arrow="never"
               indicator-position="none"
+              ref="carousel"
             >
-              <el-carousel-item v-for="(item , index) in list" :key="index">
+              <el-carousel-item v-for="(item , index) in list" :key="index" name="index">
                 <div class="b-a-l-s-side">
                   <img :src="item.carouselImg" />
                 </div>
@@ -63,10 +29,9 @@
               class="b-a-r-kind"
               v-for="(item,index) in list"
               :key="index"
-              @mouseenter="addActive($event);ch_cur(index)"
-              @mouseleave="removeActive($event)"
+              @mouseenter="ch_cur(index)"
             >
-              <div class="b-point"></div>
+              <div :class="index == cur?'b-point b-point-checked':'b-point'"></div>
               <div>
                 <p class="b-a-r-k-title">{{item.title}}</p>
                 <p class="b-a-r-k-desc">{{item.desc}}</p>
@@ -82,73 +47,36 @@
           <div class="kind-title coff">创作者VIP服务</div>
           <div class="kind-desc co35">SERVICE</div>
         </div>
-        <div class="vip-server">
-          <div class="v-s-banner" style="left: -798px; transition: left 1s ease 0s;">
-            <div class="v-s-b-it">
-              <img src="../../assets/images/f98cde5.png" class="v-s-b-img" />
-              <div class="v-s-b-wrod">
+        <el-carousel indicator-position="none" :autoplay="false" arrow="always" class="carousel">
+          <el-carousel-item v-for="(item, index) in viplist" :key="index">
+            <div class="vip-server">
+              <div class="v-s-banner" style>
+                <div class="v-s-b-it">
+                  <img :src="item.img" class="v-s-b-img" />
+                  <div class="v-s-b-wrod">
+                    <img style="width:32px;heigth:28px" :src="item.icon" class="v-s-b-w-icon" />
+                    <p class="v-s-b-w-title">{{item.title}}</p>
+                    <p class="v-s-b-w-desc">{{item.desc}}</p>
+                  </div>
+                  <div class="mc" style="padding-left:37px">
+                    <img :src="item.img" style="width:380px; height:351px" alt />
+                  </div>
+                </div>
+              </div>
+              <div class="v-s-b-right"></div>
+              <div class="v-s-b-icon">
                 <img
-                  src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAAAXNSR0IArs4c6QAAAvZJREFUSA29l01IVFEUxxsbrRBTwxKqXaQVRJBRRGCbdkFitYiooKUu+1gkrcKNi4IKgojCFoEFEW3KRUQQCAoRSZu+Fn0HoUbRN/n6/Ydzh+u8OzNvnFcHfp77zj3nf9993nfvm8ychBZFUYbUlbAWVsAikE3CCxiH55lMJsJXbwzYDL1wH75CMVOfcnqgqaqREdgHT8C3KS7G4Z6h9iT4ppq9FQ9OUQNc8pS+074KO2E5ZJ2o2hbrxg/BN3B2gUa9yy3pSWyEYVdp7Q0li7xO8jvgtld/i/ZCLyXeJKEWrntF/bTzs4tXhCOqgROezrWSOnQe85L7wrLJowV6R4OVJK2Gzzbw5WDSLILoDZrmJ3xbTILgRUt4hV8SS5hlQFogTdn5GTIEtFL1msiOzOhM4QLNwznlKJrAL81LcnHQOvQ+Lst3pNSQJrh3/YBka0y70/woW95ba6fmTHPUBLfK13An2oPbLThm/l+4Bya6SmPqHZ0Hiy2o3Wcdbd3MbzjH3d61vmrdSxNowddpYJ0m7kTRySOcTdNIa+AfJlqLz2aZ0U9m2cNFF8y1TrlfMKhGStZgOroBaf8fY3InQZZ7gm5Vlx2dgjbYUphIbAFsg8bCPndNn9bMRrt+7OJlPYX18BSm4RRoZWpH6oQ7IDtbTIi+dnAfEd3F8mJxiurgBjjT+fzRXZjvjRVagP4By3mNby6WF4xToFnrqHsDzv7QeAh7gkUE6dNs3XbcXyyvbByRFtAj3g7rQftA0OibD+5fodm2BhPTDDKIPgbciUez+FNJNC4CWsVNHv67n9OgrxX01eFsIJF4KAkFzeA46Avyg/EePwY7VIPXTe0HvQHOTtOI3VxojGCMYn1by7TTaYGJdyD7AhrgkS7MFDsUFKskiIhbJF20daoJPYUz4JtW+k3oKKVfyRfkhAntwrvVqUe42eLP8MMwxP4/YrHqHTPYBIWbBqGcjfBXx11i0x6a2BBfQ/Ju0A82d5TqB9sVZjmFT2x/Afw4jPKmpHVVAAAAAElFTkSuQmCC"
-                  class="v-s-b-w-icon"
+                  src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAFCAYAAABFA8wzAAAAAXNSR0IArs4c6QAAAHpJREFUGBljYEACScbPipKMnkUjCZHMZILpSDZ8ZsfExFjIyPD3JEyMHBpsYKzeC25GZsYeBob/+XPPyd4hxyCYHkYggzHZ5HkPI5D6x/CvC2gDSIxk8P8/UN//vytYEg2fizAyMooDBfYzMTLa/f/PSJaBYGcwMu4CABLwHqG3ESmDAAAAAElFTkSuQmCC"
                 />
-                <p class="v-s-b-w-title">VIP专属客服</p>
-                <p class="v-s-b-w-desc">
-                  平台提供客服专员为创作者1V1选品指导，粉丝与货品匹配和配套售后服务。
-                  <br />客服时间：周一到周日 9:00 - 20:00
-                </p>
               </div>
-            </div>
-            <div class="v-s-b-it">
-              <img src="../../assets/images/3e990f3.png" class="v-s-b-img" />
-              <div class="v-s-b-wrod">
-                <img src="../../assets/images/8fcacb9.png" class="v-s-b-w-icon w-34" />
-                <p class="v-s-b-w-title">商品样品扶持计划</p>
-                <p class="v-s-b-w-desc">星罗针对优秀的创作者推出的样品扶持计划。我们旨在帮助创作者更好的变现，并将更多的好商品介绍给更多的用户。</p>
-              </div>
-            </div>
-            <div class="v-s-b-it">
-              <img src="../../assets/images/2fd4600.png" class="v-s-b-img" />
-              <div class="v-s-b-wrod">
-                <img src="../../assets/images/ffb2718.png" class="v-s-b-w-icon" />
-                <p class="v-s-b-w-title">大数据货品匹配</p>
-                <p class="v-s-b-w-desc">针对创作者定位，提供相关历史带货数据。多维度标签属性筛选货品</p>
-              </div>
-            </div>
-            <div class="v-s-b-it">
-              <img src="../../assets/images/f98cde5.png" class="v-s-b-img" />
-              <div class="v-s-b-wrod">
+              <div class="v-s-b-icon">
                 <img
-                  src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAAAXNSR0IArs4c6QAAAvZJREFUSA29l01IVFEUxxsbrRBTwxKqXaQVRJBRRGCbdkFitYiooKUu+1gkrcKNi4IKgojCFoEFEW3KRUQQCAoRSZu+Fn0HoUbRN/n6/Ydzh+u8OzNvnFcHfp77zj3nf9993nfvm8ychBZFUYbUlbAWVsAikE3CCxiH55lMJsJXbwzYDL1wH75CMVOfcnqgqaqREdgHT8C3KS7G4Z6h9iT4ppq9FQ9OUQNc8pS+074KO2E5ZJ2o2hbrxg/BN3B2gUa9yy3pSWyEYVdp7Q0li7xO8jvgtld/i/ZCLyXeJKEWrntF/bTzs4tXhCOqgROezrWSOnQe85L7wrLJowV6R4OVJK2Gzzbw5WDSLILoDZrmJ3xbTILgRUt4hV8SS5hlQFogTdn5GTIEtFL1msiOzOhM4QLNwznlKJrAL81LcnHQOvQ+Lst3pNSQJrh3/YBka0y70/woW95ba6fmTHPUBLfK13An2oPbLThm/l+4Bya6SmPqHZ0Hiy2o3Wcdbd3MbzjH3d61vmrdSxNowddpYJ0m7kTRySOcTdNIa+AfJlqLz2aZ0U9m2cNFF8y1TrlfMKhGStZgOroBaf8fY3InQZZ7gm5Vlx2dgjbYUphIbAFsg8bCPndNn9bMRrt+7OJlPYX18BSm4RRoZWpH6oQ7IDtbTIi+dnAfEd3F8mJxiurgBjjT+fzRXZjvjRVagP4By3mNby6WF4xToFnrqHsDzv7QeAh7gkUE6dNs3XbcXyyvbByRFtAj3g7rQftA0OibD+5fodm2BhPTDDKIPgbciUez+FNJNC4CWsVNHv67n9OgrxX01eFsIJF4KAkFzeA46Avyg/EePwY7VIPXTe0HvQHOTtOI3VxojGCMYn1by7TTaYGJdyD7AhrgkS7MFDsUFKskiIhbJF20daoJPYUz4JtW+k3oKKVfyRfkhAntwrvVqUe42eLP8MMwxP4/YrHqHTPYBIWbBqGcjfBXx11i0x6a2BBfQ/Ju0A82d5TqB9sVZjmFT2x/Afw4jPKmpHVVAAAAAElFTkSuQmCC"
-                  class="v-s-b-w-icon"
+                  src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABUAAAAFCAYAAACqwacNAAAAAXNSR0IArs4c6QAAAH1JREFUGBljYKAINDClmDxvSDJ5FoxsDBMyh3R2w7///xlOMzIyTYnVe6EI00+hoQwMc89KbmVg+D+djf3/tFCGVcwgg1nijJ/JsTEyxMJsIYf+z8DIyvifwY3XxLaI4QxDNwsTw1/+/wysduQYhtDz/x/Q4E1Avmao8V1+AGRQH2n55zAHAAAAAElFTkSuQmCC"
                 />
-                <p class="v-s-b-w-title">VIP专属客服</p>
-                <p class="v-s-b-w-desc">
-                  平台提供客服专员为创作者1V1选品指导，粉丝与货品匹配和配套售后服务。
-                  <br />客服时间：周一到周日 9:00 - 20:00
-                </p>
               </div>
             </div>
-            <div class="v-s-b-it">
-              <img src="../../assets/images/3e990f3.png" class="v-s-b-img" />
-              <div class="v-s-b-wrod">
-                <img src="../../assets/images/8fcacb9.png" class="v-s-b-w-icon w-34" />
-                <p class="v-s-b-w-title">商品样品扶持计划</p>
-                <p class="v-s-b-w-desc">星罗针对优秀的创作者推出的样品扶持计划。我们旨在帮助创作者更好的变现，并将更多的好商品介绍给更多的用户。</p>
-              </div>
-            </div>
-          </div>
-          <div class="v-s-b-right"></div>
-          <div class="v-s-b-icon">
-            <img
-              src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAFCAYAAABFA8wzAAAAAXNSR0IArs4c6QAAAHpJREFUGBljYEACScbPipKMnkUjCZHMZILpSDZ8ZsfExFjIyPD3JEyMHBpsYKzeC25GZsYeBob/+XPPyd4hxyCYHkYggzHZ5HkPI5D6x/CvC2gDSIxk8P8/UN//vytYEg2fizAyMooDBfYzMTLa/f/PSJaBYGcwMu4CABLwHqG3ESmDAAAAAElFTkSuQmCC"
-            />
-          </div>
-          <div class="v-s-b-icon">
-            <img
-              src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABUAAAAFCAYAAACqwacNAAAAAXNSR0IArs4c6QAAAH1JREFUGBljYKAINDClmDxvSDJ5FoxsDBMyh3R2w7///xlOMzIyTYnVe6EI00+hoQwMc89KbmVg+D+djf3/tFCGVcwgg1nijJ/JsTEyxMJsIYf+z8DIyvifwY3XxLaI4QxDNwsTw1/+/wysduQYhtDz/x/Q4E1Avmao8V1+AGRQH2n55zAHAAAAAElFTkSuQmCC"
-            />
-          </div>
-        </div>
+          </el-carousel-item>
+        </el-carousel>
       </div>
     </div>
     <div id="createHatch">
@@ -217,32 +145,51 @@ export default {
         {
           title: "简易便捷 带货好帮手",
           desc: "星罗星选小程序，微信扫码，快速授权，一键选货",
-          carouselImg:"https://xl.linkstars.com/_nuxt/img/8645489.png",
+          carouselImg: "https://xl.linkstars.com/_nuxt/img/8645489.png"
         },
         {
           title: "全品类好货 超高佣金等你来",
           desc: "超高佣金、精选创作者爆款货品、众多爆品类目任你选",
-          carouselImg:"https://xl.linkstars.com/_nuxt/img/97408c7.png",
+          carouselImg: "https://xl.linkstars.com/_nuxt/img/97408c7.png"
         },
         {
           title: "订单数据监测 实时统计报表",
           desc: "带货数据统计、创作者管理、多渠道信息反馈、专属客服服务",
-          carouselImg:"https://xl.linkstars.com/_nuxt/img/e7ce824.png"
+          carouselImg: "https://xl.linkstars.com/_nuxt/img/e7ce824.png"
         }
       ],
-      cur: 0
+      cur: 0,
+      viplist: [
+        {
+          img: "https://xl.linkstars.com/_nuxt/img/f98cde5.png",
+          title: "VIP专属客服",
+          desc:
+            "平台提供客服专员为创作者1V1选品指导，粉丝与货品匹配和配套售后服务。  客服时间：周一到周日 9:00 - 20:00",
+          icon:
+            "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAAAXNSR0IArs4c6QAAAvZJREFUSA29l01IVFEUxxsbrRBTwxKqXaQVRJBRRGCbdkFitYiooKUu+1gkrcKNi4IKgojCFoEFEW3KRUQQCAoRSZu+Fn0HoUbRN/n6/Ydzh+u8OzNvnFcHfp77zj3nf9993nfvm8ychBZFUYbUlbAWVsAikE3CCxiH55lMJsJXbwzYDL1wH75CMVOfcnqgqaqREdgHT8C3KS7G4Z6h9iT4ppq9FQ9OUQNc8pS+074KO2E5ZJ2o2hbrxg/BN3B2gUa9yy3pSWyEYVdp7Q0li7xO8jvgtld/i/ZCLyXeJKEWrntF/bTzs4tXhCOqgROezrWSOnQe85L7wrLJowV6R4OVJK2Gzzbw5WDSLILoDZrmJ3xbTILgRUt4hV8SS5hlQFogTdn5GTIEtFL1msiOzOhM4QLNwznlKJrAL81LcnHQOvQ+Lst3pNSQJrh3/YBka0y70/woW95ba6fmTHPUBLfK13An2oPbLThm/l+4Bya6SmPqHZ0Hiy2o3Wcdbd3MbzjH3d61vmrdSxNowddpYJ0m7kTRySOcTdNIa+AfJlqLz2aZ0U9m2cNFF8y1TrlfMKhGStZgOroBaf8fY3InQZZ7gm5Vlx2dgjbYUphIbAFsg8bCPndNn9bMRrt+7OJlPYX18BSm4RRoZWpH6oQ7IDtbTIi+dnAfEd3F8mJxiurgBjjT+fzRXZjvjRVagP4By3mNby6WF4xToFnrqHsDzv7QeAh7gkUE6dNs3XbcXyyvbByRFtAj3g7rQftA0OibD+5fodm2BhPTDDKIPgbciUez+FNJNC4CWsVNHv67n9OgrxX01eFsIJF4KAkFzeA46Avyg/EePwY7VIPXTe0HvQHOTtOI3VxojGCMYn1by7TTaYGJdyD7AhrgkS7MFDsUFKskiIhbJF20daoJPYUz4JtW+k3oKKVfyRfkhAntwrvVqUe42eLP8MMwxP4/YrHqHTPYBIWbBqGcjfBXx11i0x6a2BBfQ/Ju0A82d5TqB9sVZjmFT2x/Afw4jPKmpHVVAAAAAElFTkSuQmCC"
+        },
+        {
+          img: "https://xl.linkstars.com/_nuxt/img/3e990f3.png",
+          title: "商品样品扶持计划",
+          desc:
+            "星罗针对优秀的创作者推出的样品扶持计划。我们旨在帮助创作者更好的变现，并将更多的好商品介绍给更多的用户。",
+          icon: "https://xl.linkstars.com/_nuxt/img/8fcacb9.png"
+        },
+        {
+          img: "https://xl.linkstars.com/_nuxt/img/2fd4600.png",
+          title: "大数据货品匹配",
+          desc:
+            "针对创作者定位，提供相关历史带货数据。多维度标签属性筛选货品。",
+          icon: "https://xl.linkstars.com/_nuxt/img/ffb2718.png"
+        }
+      ]
     };
   },
   methods: {
     ch_cur(index) {
-      console.log(index);
+      // console.log(index);
       this.cur = index;
-    },
-    addActive($event) {
-      $event.currentTarget.children[0].className = "b-point b-point-checked";
-    },
-    removeActive($event) {
-      $event.currentTarget.children[0].className = "b-point";
+      this.$refs.carousel.setActiveItem(index);
     }
   }
 };
@@ -543,5 +490,22 @@ export default {
 }
 .co35 {
   color: #353940;
+}
+.carousel ::v-deep .el-carousel__arrow {
+  height: 44px;
+  width: 44px;
+  top: 50%;
+  opacity: 0;
+  filter: Alpha(opacity=0);
+}
+.carousel ::v-deep .el-carousel__arrow--left {
+  left: 0px;
+}
+
+.carousel ::v-deep .el-carousel__arrow--right {
+  right: 398px;
+}
+.carousel ::v-deep .el-carousel__container {
+  height: 351px;
 }
 </style>

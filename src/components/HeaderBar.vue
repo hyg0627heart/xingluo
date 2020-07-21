@@ -31,10 +31,7 @@
             class="xingluo-components-page-head-a"
           >创业者服务</router-link>
           <div class="xingluo-components-page-head-btn-fa">
-            <a
-              href="https://xl.linkstars.com/admin/#/login?address=https%3A%2F%2Fxl.linkstars.com%2F&amp;type=login"
-              class="xingluo-components-page-head-btn"
-            >登录</a>/
+            <router-link tag="a" to="/login" class="xingluo-components-page-head-btn">登录</router-link>/
             <a
               href="https://xl.linkstars.com/admin/#/login?address=&amp;type=register"
               class="xingluo-components-page-head-btn"

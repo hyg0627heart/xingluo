@@ -48,17 +48,19 @@
             <p class="s-l-desc">关注更多信息</p>
           </div>
         </div>
-        <div class="side-it" style>
-          <img
-            src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAUCAYAAACaq43EAAAAAXNSR0IArs4c6QAAAglJREFUSA29ls9LAkEUx91f2iFcBKGVDhVsFLlKKgRhdDAiqIj+g/6BDnXq0qG/oKCIIorCQ+c6RofsHLLab0M6pkEQwV4iXPtOtKE26zoZDsg6b973fWb2Pd/Iuf4wgsFgu8fjmYRU4jjuJJ1Ov7CG4VgFoVDIJ0nSEYCj39qMaZpTuq4/scTiWZzhy7vd7s0KKJEPYr6nqqqHJZbA4hyLxZbgv1CrAVjFq28rFAqntWt284bB0Wh0GkG2ALHTDCuK8lgsFi/tYJX2hnIcDof7kNcUhEqlmPL9rVQqjWcymQvKWpXJMcfInRfQJFROUBJYFgQhqWlaRxWFMnECc7Isr0M3RNHamfpRgDuoB8nOgdjrgiORyCJ85uoFoK2hDmbK5fIKbc2y2RWKC8U0gQC7+IiWM+MzjmJ7QLFd03TU4gJUhXMK0E6aqFEbTv2KYhvLZrN6rebXqybtEMCDZqEEhBg+URSTyLffEYxGsAqneK1jE3MNJ9+GviplVTnGK57HLpebgFCliDkQCARMdLZzy+EHDGgCDvtYqPszsISsT8QeAfwG8Dui/SoudKYe5OIMi12sARn9yfWZwDV6RYqLR2daawGU7NGPfG/gKXLkOvN6vfcAd8PQivFsGEYvn8/n3wEluW3JwIkPc7mcYTUQAe1xFhvQQLds/7oRxMYfFfOW5/lj5PjjE7OyewGtkoc9AAAAAElFTkSuQmCC"
-            class="side-it-black black4"
-          />
-          <img
-            src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAUCAYAAACaq43EAAAAAXNSR0IArs4c6QAAAVpJREFUSA21ljFLQlEYhj03RYRLEAiCWyDYUERDf8AlCIdwavEfODm1NTX1D1pqcmrISdoKWpwahFobhIYiGkIS0dtzBeFeudfzfYc88HK+8533e16uoFeTcVhBEPiMHaMcujfGfDpgdCOEbqFHtFjPFGUdRekmwEOdRWJk71HnlTi5HfhZJGy5vJSTFE5S6mi8nBY5z6ibCqTdCrCK3iMhaeU3F4d2osABaBP105IS+q/0SgJ0ugWAQTcJcFuriyH8qrkthtu2hBX3F06pAI/Q7wqw7WqK4VQVzkAFDW1kwf0XngNROEYfPQmgUssAY9EajulKSlT4bvFmU8O5bClgWut5YjCUGhppaQr/BG8jFk5jG70pIK7WDwb35uEU4RvnzpXkMPfATNYjPfyF2Y99BOs97IAvePx7GFNcrzcrRu9w+jFhi0ffYDtBu2jeY//vNQP4gro87OQPCudSd0T0rVcAAAAASUVORK5CYII="
-            class="side-it-white black4"
-          />
-          <span class="s-word">返回顶部</span>
-        </div>
+        <el-backtop target=".index" :bottom="128" :right="2">
+          <div class="side-it">
+            <img
+              src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAUCAYAAACaq43EAAAAAXNSR0IArs4c6QAAAglJREFUSA29ls9LAkEUx91f2iFcBKGVDhVsFLlKKgRhdDAiqIj+g/6BDnXq0qG/oKCIIorCQ+c6RofsHLLab0M6pkEQwV4iXPtOtKE26zoZDsg6b973fWb2Pd/Iuf4wgsFgu8fjmYRU4jjuJJ1Ov7CG4VgFoVDIJ0nSEYCj39qMaZpTuq4/scTiWZzhy7vd7s0KKJEPYr6nqqqHJZbA4hyLxZbgv1CrAVjFq28rFAqntWt284bB0Wh0GkG2ALHTDCuK8lgsFi/tYJX2hnIcDof7kNcUhEqlmPL9rVQqjWcymQvKWpXJMcfInRfQJFROUBJYFgQhqWlaRxWFMnECc7Isr0M3RNHamfpRgDuoB8nOgdjrgiORyCJ85uoFoK2hDmbK5fIKbc2y2RWKC8U0gQC7+IiWM+MzjmJ7QLFd03TU4gJUhXMK0E6aqFEbTv2KYhvLZrN6rebXqybtEMCDZqEEhBg+URSTyLffEYxGsAqneK1jE3MNJ9+GviplVTnGK57HLpebgFCliDkQCARMdLZzy+EHDGgCDvtYqPszsISsT8QeAfwG8Dui/SoudKYe5OIMi12sARn9yfWZwDV6RYqLR2daawGU7NGPfG/gKXLkOvN6vfcAd8PQivFsGEYvn8/n3wEluW3JwIkPc7mcYTUQAe1xFhvQQLds/7oRxMYfFfOW5/lj5PjjE7OyewGtkoc9AAAAAElFTkSuQmCC"
+              class="side-it-black black4"
+            />
+            <img
+              src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAUCAYAAACaq43EAAAAAXNSR0IArs4c6QAAAVpJREFUSA21ljFLQlEYhj03RYRLEAiCWyDYUERDf8AlCIdwavEfODm1NTX1D1pqcmrISdoKWpwahFobhIYiGkIS0dtzBeFeudfzfYc88HK+8533e16uoFeTcVhBEPiMHaMcujfGfDpgdCOEbqFHtFjPFGUdRekmwEOdRWJk71HnlTi5HfhZJGy5vJSTFE5S6mi8nBY5z6ibCqTdCrCK3iMhaeU3F4d2osABaBP105IS+q/0SgJ0ugWAQTcJcFuriyH8qrkthtu2hBX3F06pAI/Q7wqw7WqK4VQVzkAFDW1kwf0XngNROEYfPQmgUssAY9EajulKSlT4bvFmU8O5bClgWut5YjCUGhppaQr/BG8jFk5jG70pIK7WDwb35uEU4RvnzpXkMPfATNYjPfyF2Y99BOs97IAvePx7GFNcrzcrRu9w+jFhi0ffYDtBu2jeY//vNQP4gro87OQPCudSd0T0rVcAAAAASUVORK5CYII="
+              class="side-it-white black4"
+            />
+            <span class="s-word">返回顶部</span>
+          </div>
+        </el-backtop>
       </div>
     </main>
     <footer>
@@ -83,12 +85,12 @@ export default {
   background: #f7f7f7;
   // min-width: 1200px;
   width: 100%;
+  height: 100vh;
+  overflow-x: hidden;
 }
-
-main {
-  //   height: 1000px;
+.el-backtop{
+  width: 66px !important;
 }
-
 .side-content {
   position: fixed;
   right: 2px;
