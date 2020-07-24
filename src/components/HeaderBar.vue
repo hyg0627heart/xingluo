@@ -32,10 +32,7 @@
           >创业者服务</router-link>
           <div class="xingluo-components-page-head-btn-fa">
             <router-link tag="a" to="/login" class="xingluo-components-page-head-btn">登录</router-link>/
-            <a
-              href="https://xl.linkstars.com/admin/#/login?address=&amp;type=register"
-              class="xingluo-components-page-head-btn"
-            >注册</a>
+            <router-link tag="a" to="/register" class="xingluo-components-page-head-btn">注册</router-link>
           </div>
           <!---->
         </div>

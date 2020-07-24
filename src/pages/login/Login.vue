@@ -9,7 +9,10 @@
           没有账号？
           <a class="link el-link el-link--primary">
             <!---->
-            <span class="el-link--inner">点击注册</span>
+            <router-link tag='span' to='/register' class="el-link--inner">
+              点击注册
+            </router-link>
+            <!-- <span class="el-link--inner">点击注册</span> -->
             <!---->
           </a>
         </div>
@@ -29,11 +32,13 @@
               status-icon
               :rules="rules"
               ref="ruleForm"
-              label-width="100px"
+              label-width="0px"
               class="demo-ruleForm"
             >
               <el-form-item label prop="phone">
-                <el-input v-model.number="ruleForm.phone" placeholder="已注册的手机号"></el-input>
+                <el-input v-model.number="ruleForm.phone" placeholder="已注册的手机号">
+                  <i slot="prefix" class="el-input__icon el-icon-user"></i>
+                </el-input>
               </el-form-item>
               <el-form-item label prop="pass">
                 <el-input
@@ -41,7 +46,10 @@
                   v-model="ruleForm.pass"
                   autocomplete="off"
                   placeholder="请输入密码"
-                ></el-input>
+                  show-password
+                >
+                  <i slot="prefix" class="el-input__icon el-icon-lock"></i>
+                </el-input>
               </el-form-item>
             </el-form>
             <div class="forget">
@@ -51,6 +59,7 @@
               type="button"
               class="el-button login_btn el-button--primary el-button--small"
               @click="submitForm('ruleForm')"
+
             >
               <!---->
               <!---->
@@ -60,11 +69,16 @@
         </div>
       </div>
     </div>
+    <Footer></Footer>
   </div>
 </template>
 
 <script>
+import Footer from "../../components/Footer";
 export default {
+  components: {
+    Footer
+  },
   data() {
     var checkPhone = (rule, value, callback) => {
       if (!value) {
@@ -109,6 +123,7 @@ export default {
       this.$refs[formName].validate(valid => {
         if (valid) {
           alert("登陆成功");
+          this.$router.replace('/index')
         } else {
           console.log("登录错误!");
           return false;
@@ -263,8 +278,5 @@ export default {
 }
 #loginbox .el-input--small .el-input__icon {
   line-height: 52px;
-}
-::v-deep .el-form-item__content {
-  margin-left: 0px;
 }
 </style>

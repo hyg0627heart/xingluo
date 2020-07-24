@@ -1,0 +1,21 @@
+##index.js
+做启动跟配置
+
+##router
+管理路由
+index.js//统一管理 引入router时不用写index路径
+
+
+body-parser是非常常用的一个express中间件，作用是对post请求的请求体进行解析
+body-parser实现的要点如下：
+
+处理不同类型的请求体：比如text、json、urlencoded等，对应的报文主体的格式不同。
+处理不同的编码：比如utf8、gbk等。
+处理不同的压缩类型：比如gzip、deflare等。
+其他边界、异常的处理。
+
+##bcrypt
+对数据库密码进行加密解密
+
+##jsonwebtoken
+对token进行加密
